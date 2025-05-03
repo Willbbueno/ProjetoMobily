@@ -1,23 +1,39 @@
 <div #mapContainer id="map" style="height: 400px; width: 100%; margin-bottom: 20px;"></div>
 
-<div *ngIf="mostrarFormulario">
+<div *ngIf="mostrarFormulario" class="form-container">
   <h1>ADICIONAR LOCAL ACESSÍVEL</h1>
   <h3>Compartilhe informações sobre acessibilidade de um local</h3>
 
   <form [formGroup]="form" (ngSubmit)="salvarLocal()">
     <label class="form-label">Nome do local:</label>
-    <input type="text" formControlName="nomeLocal" class="form-control">
+    <input type="text" formControlName="nomeLocal" class="form-control" [readonly]="!mostrarFormulario"
+      [style.backgroundColor]="!mostrarFormulario ? '#e9ecef' : 'white'">
 
     <label class="form-label">Categoria:</label>
-    <select formControlName="categoria" class="form-control">
+    <select formControlName="categoria" class="form-control" [disabled]="!mostrarFormulario"
+      [style.backgroundColor]="!mostrarFormulario ? '#e9ecef' : 'white'">
       <option value="" disabled selected>Selecione uma categoria</option>
       <option *ngFor="let categoria of categorias" [value]="categoria">{{ categoria }}</option>
     </select>
 
     <label class="form-label">Limitações de acessibilidade:</label>
-    <select formControlName="limitacoes" class="form-control">
-      <option value="" disabled selected>Selecione uma limitação</option>
+    <select multiple class="form-control" formControlName="limitacoes">
       <option *ngFor="let item of limitacoes" [value]="item">{{ item }}</option>
+    </select>
+
+
+    <label class="form-label">Frequência de acesso:</label>
+    <select formControlName="frequencia" class="form-control" [disabled]="!mostrarFormulario"
+      [style.backgroundColor]="!mostrarFormulario ? '#e9ecef' : 'white'">
+      <option value="" disabled selected>Selecione a frequência</option>
+      <option *ngFor="let freq of frequencias" [value]="freq">{{ freq }}</option>
+    </select>
+
+    <label class="form-label">Avaliação de acessibilidade:</label>
+    <select formControlName="avaliacao" class="form-control" [disabled]="!mostrarFormulario"
+      [style.backgroundColor]="!mostrarFormulario ? '#e9ecef' : 'white'">
+      <option value="" disabled selected>Selecione uma avaliação</option>
+      <option *ngFor="let estrela of avaliacoes" [value]="estrela">{{ estrela }} estrela(s)</option>
     </select>
 
     <button type="submit" class="btn btn-primary mt-3">Salvar</button>
@@ -27,19 +43,36 @@
 <hr>
 
 <h2>Locais Cadastrados</h2>
+<button class="btn btn-success mb-3" (click)="exportarPDF()">Salvar Tudo (PDF)</button>
+<button class="btn btn-secondary mb-3 ml-2" (click)="ordenarPorAvaliacao(true)">Melhores Locais</button>
+<button class="btn btn-secondary mb-3 ml-2" (click)="ordenarPorAvaliacao(false)">Piores Locais</button>
+
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Nome do local</th>
       <th>Categoria</th>
       <th>Limitações de acessibilidade</th>
+      <th>Frequência de acesso</th>
+      <th>Avaliação</th>
+      <th>Informação correta?</th>
+      <th>Ações</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let local of locaisCadastrados">
       <td>{{ local.nomeLocal }}</td>
       <td>{{ local.categoria }}</td>
-      <td>{{ local.limitacoes }}</td>
+      <td>{{ local.limitacoes.join(', ') }}</td>
+      <td>{{ local.frequencia }}</td>
+      <td>{{ local.avaliacao }} estrela(s)</td>
+      <td>
+        <button class="btn btn-outline-success btn-sm" (click)="avaliarInformacao(local, true)">👍</button>
+        <button class="btn btn-outline-danger btn-sm" (click)="avaliarInformacao(local, false)">👎</button>
+      </td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="removerLocal(local)">Apagar</button>
+      </td>
     </tr>
   </tbody>
 </table>

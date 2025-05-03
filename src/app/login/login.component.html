@@ -1,1 +1,63 @@
-<p>login works!</p>
+<div class="form-container">
+    <h1>Cadastro de Usuário</h1>
+    <h3>Preencha as informações para criar sua conta</h3>
+  
+    <form [formGroup]="formUsuario" (ngSubmit)="salvarCadastro()">
+      
+      <!-- Nome Completo -->    
+      <label class="form-label">Nome Completo:</label>
+      <input type="text" formControlName="nome" class="form-control" placeholder="Digite seu nome completo" required>
+  
+      <!-- E-mail -->
+      <label class="form-label">E-mail:</label>
+      <input type="email" formControlName="email" class="form-control" placeholder="Digite seu e-mail" required>
+  
+      <!-- CPF -->
+      <label class="form-label">CPF:</label>
+      <input type="cpf" formControlName="cpf" class="form-control" placeholder="Digite cpf" required>
+
+      <!-- Senha -->
+      <label class="form-label">Senha:</label>
+      <input type="password" formControlName="senha" class="form-control" placeholder="Digite sua senha" required>
+  
+      <!-- Confirmar Senha -->
+      <label class="form-label">Confirmar Senha:</label>
+      <input type="password" formControlName="confirmarSenha" class="form-control" placeholder="Confirme sua senha" required>
+  
+      <!-- Telefone -->
+      <label class="form-label">Telefone:</label>
+      <input type="text" formControlName="telefone" class="form-control" placeholder="Digite seu telefone (opcional)">
+  
+      <!-- Data de Nascimento -->
+      <label class="form-label">Data de Nascimento:</label>
+      <input type="date" formControlName="dataNascimento" class="form-control">
+  
+      <!-- Tipo de Deficiência -->
+      <label class="form-label">Você possui alguma deficiência?</label>
+      <select formControlName="tipoDeficiencia" class="form-control">
+        <option value="">Selecione</option>
+        <option value="Mobilidade reduzida">Física</option>
+        <option value="Deficiência auditiva">Auditiva</option>
+        <option value="Deficiência visual">Visual</option>
+        <option value="Deficiência visual">Intelectual</option>
+        <option value="Deficiência visual">Psicossocial (Mental)</option>
+        <option value="Deficiência visual">Múltipla</option>
+        <option value="Deficiência visual">Aprendizagem</option>
+        <option value="Deficiência visual">Mobilidade não física</option>
+        <option value="Nenhuma">Nenhuma</option>
+      </select>
+  
+      <!-- Tipo de Usuário (Pessoa com deficiência, Cuidador, Profissional)  -->
+      <label class="form-label">Qual o seu perfil?</label>
+      <select formControlName="tipoUsuario" class="form-control">
+        <option value="">Selecione</option>
+        <option value="Pessoa com deficiência">Pessoa com deficiência</option>
+        <option value="Cuidador">Cuidador</option>
+        <option value="Profissional">Profissional</option>
+      </select>
+  
+      <!-- Botão de Cadastro -->
+      <button type="submit" class="btn btn-primary mt-3">Cadastrar</button>
+    </form>
+  </div>
+  

@@ -6,6 +6,7 @@ import { Map, map, tileLayer, Browser, Icon, Marker } from 'leaflet';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
+
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -17,6 +18,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
   @ViewChild('mapContainer', { static: false }) mapContainer!: ElementRef<HTMLElement>;
   private leafletMap!: Map;
   private marcadorSelecionado!: Marker;
+  
 
   mostrarFormulario = false;
 
@@ -80,7 +82,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
   frequencias: string[] = ['Alto', 'Médio', 'Baixo'];
   avaliacoes: number[] = [1, 2, 3, 4, 5];
 
-  locaisCadastrados: any[] = [];
+  locaisCadastrados: any[] = [
+
+    
+  ];
 
   iconeLocal = new Icon({
     iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
@@ -142,6 +147,43 @@ export class HomeComponent implements OnInit, AfterViewInit {
       this.form.reset();
     });
   }
+
+  localBusca: string = '';
+
+  buscarLocal(): void {
+    if (!this.localBusca) return;
+  
+    const termoComCidade = `${this.localBusca}, Sorocaba, SP, Brasil`;
+  
+    fetch(`https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(termoComCidade)}&apiKey=b992d623b3cc40b492be9fa96c416986`)
+      .then(res => res.json())
+      .then(data => {
+        const resultado = data.features.find((f: { properties: { city: string; }; }) =>
+          f.properties.city?.toLowerCase() === 'sorocaba'
+        );
+  
+        if (resultado) {
+          const lat = resultado.geometry.coordinates[1];
+          const lon = resultado.geometry.coordinates[0];
+  
+          this.leafletMap.setView([lat, lon], 17);
+  
+          if (this.marcadorSelecionado) {
+            this.leafletMap.removeLayer(this.marcadorSelecionado);
+          }
+  
+          this.marcadorSelecionado = new Marker([lat, lon], {
+            icon: this.iconeLocal
+          }).addTo(this.leafletMap)
+            .bindPopup('Local encontrado em Sorocaba')
+            .openPopup();
+        } else {
+          alert('Nenhum local encontrado em Sorocaba com esse nome.');
+        }
+      })
+      .catch(() => alert('Erro ao buscar local.'));
+  }
+  
 
   salvarLocal(): void {
     if (this.form.valid) {

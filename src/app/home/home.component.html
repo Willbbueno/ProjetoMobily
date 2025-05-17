@@ -1,4 +1,10 @@
 <div #mapContainer id="map" style="height: 400px; width: 100%; margin-bottom: 20px;"></div>
+<h3>Pesquise rapimente o local que deseja cadastrar ou navegue pelo map:</h3>
+
+<div class="input-group mb-3">
+  <input type="text" [(ngModel)]="localBusca" class="form-control" placeholder="Buscar local por nome">
+  <button (click)="buscarLocal()" class="btn btn-primary">Buscar</button>
+</div>
 
 <div *ngIf="mostrarFormulario" class="form-container">
   <h1>ADICIONAR LOCAL ACESSÍVEL</h1>
@@ -21,7 +27,6 @@
       <option *ngFor="let item of limitacoes" [value]="item">{{ item }}</option>
     </select>
 
-
     <label class="form-label">Frequência de acesso:</label>
     <select formControlName="frequencia" class="form-control" [disabled]="!mostrarFormulario"
       [style.backgroundColor]="!mostrarFormulario ? '#e9ecef' : 'white'">
@@ -40,7 +45,6 @@
   </form>
 </div>
 
-<hr>
 
 <h2>Locais Cadastrados</h2>
 <button class="btn btn-success mb-3" (click)="exportarPDF()">Salvar Tudo (PDF)</button>

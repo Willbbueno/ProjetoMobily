@@ -9,6 +9,7 @@ import { MenuSuperiorComponent } from "./menu-superior/menu-superior.component";
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
+
 export class AppComponent {
   title = 'ProjetoMobily';
 }

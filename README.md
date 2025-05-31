@@ -59,23 +59,23 @@ O projeto utiliza um padrão visual consistente, inspirado na página **Sobre**,
 ## Prints do sistema
 
 ### Página inicial do mapa  
-![Página inicial](![Captura de tela 2025-05-30 213528](https://github.com/user-attachments/assets/6d7e8931-ffeb-4379-a71b-d412214dee52)
+(![Captura de tela 2025-05-30 213528](https://github.com/user-attachments/assets/6d7e8931-ffeb-4379-a71b-d412214dee52)
 
 
 ### Exportação em PDF  
 ![Exportação PDF](https://github.com/user-attachments/assets/b72db0ed-1325-4a46-a2c1-c0e91dbc0c8b)
 
 ### Cadastro de usuário  
-![Cadastro de usuário](![Captura de tela 2025-05-30 213613](https://github.com/user-attachments/assets/8a66c4cb-8135-4fe5-9e4d-a0d0c954fd2e)
+(![Captura de tela 2025-05-30 213613](https://github.com/user-attachments/assets/8a66c4cb-8135-4fe5-9e4d-a0d0c954fd2e)
 
 ### Tela de login  
-![Tela de login](![Captura de tela 2025-05-30 213551](https://github.com/user-attachments/assets/ff944987-3624-4165-815d-701689ab598f)
+(![Captura de tela 2025-05-30 213551](https://github.com/user-attachments/assets/ff944987-3624-4165-815d-701689ab598f)
 
 ### Tela sobre nós  
-![Sobre nós](![Captura de tela 2025-05-30 213631](https://github.com/user-attachments/assets/3ab8e4ab-b3e5-42a4-a01c-40fc02405b43)
+(![Captura de tela 2025-05-30 213631](https://github.com/user-attachments/assets/3ab8e4ab-b3e5-42a4-a01c-40fc02405b43)
 
 ### Tela de relatórios do usuário  
-![Relatório do usuário](![Captura de tela 2025-05-30 214214](https://github.com/user-attachments/assets/52190c76-5c2b-4517-899e-2fed593f090a)
+(![Captura de tela 2025-05-30 214214](https://github.com/user-attachments/assets/52190c76-5c2b-4517-899e-2fed593f090a)
 
 
 ## Observações
